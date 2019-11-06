@@ -17,7 +17,7 @@ def test_basic_delegation():
         def foo(self):
             pass
 
-    class B(A):
+    class B:
         def bar(self):
             return "B bar"
 
@@ -85,7 +85,7 @@ def test_custom_name_delegate():
         def foo(self):
             pass
 
-    class B(A):
+    class B:
         def bar(self):
             return "B bar"
 
