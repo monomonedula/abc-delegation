@@ -11,6 +11,10 @@ Not any more
 
 Basic usage:
 ```python    
+from abc import ABCMeta
+
+from abc_delegation import delegation_metaclass
+
 class A(metaclass=ABCMeta):
     @abstractmethod
     def bar(self):
@@ -41,6 +45,11 @@ assert c.bar() == "B bar"
 
 Multiple delegates:
 ```python
+from abc import ABCMeta
+
+from abc_delegation import multi_delegation_metaclass
+
+
 class A(metaclass=ABCMeta):
     @abstractmethod
     def bar(self):
