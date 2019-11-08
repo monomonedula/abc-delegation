@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABCMeta
 
-from delegate.delegated import (
+from abc_delegation.delegate import (
     DelegatingMeta,
     delegation_metaclass,
     multi_delegation_metaclass,

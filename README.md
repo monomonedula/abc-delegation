@@ -1,4 +1,4 @@
-# delegate
+# abc-delegation
 
 A tool for automated delegation with abstract base classes.
 
