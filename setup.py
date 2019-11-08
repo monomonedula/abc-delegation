@@ -26,4 +26,5 @@ setup(
     test_suite="nose.collector",
     setup_requires=["pytest-runner"],
     tests_require=["pytest"],
+    long_description_content_type='text/markdown',
 )
