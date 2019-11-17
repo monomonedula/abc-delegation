@@ -9,6 +9,10 @@ This technique is impossible with regular `__getattr__` approach for delegation,
 so normally, you would have to define every delegated method explicitly.
 Not any more
 
+Installation:
+`pip install abc-delegation`
+
+
 Basic usage:
 ```python    
 from abc import ABCMeta
