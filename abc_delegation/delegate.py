@@ -46,6 +46,6 @@ def _make_delegated_method_multi(delegate_names, attr):
             delegate_ = getattr(self, d)
             if hasattr(delegate_, attr):
                 return getattr(delegate_, attr)(*args, **kwargs)
-        AttributeError(f"None of delegates has method '{attr}'")
+        AttributeError("None of delegates has method %r" % attr)
 
     return delegated_method
