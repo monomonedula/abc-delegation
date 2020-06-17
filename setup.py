@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name="abc_delegation",
-    version="0.2.1",
+    version="0.2.2",
     description="Tool for automated implementation of delegation pattern with ABC",
     long_description=readme(),
     classifiers=[
