@@ -1,5 +1,7 @@
 from abc import abstractmethod, ABCMeta
 
+import pytest
+
 from abc_delegation.delegate import (
     DelegatingMeta,
     delegation_metaclass,
@@ -95,6 +97,56 @@ def test_custom_name_delegate():
     class C(A, metaclass=delegation_metaclass("my_delegate")):
         def __init__(self, b):
             self.my_delegate = b
+
+        def foo(self):
+            return "C foo"
+
+    c = C(B())
+    assert c.foo() == "C foo"
+    assert c.bar() == "B bar"
+
+
+def test_raises():
+    class A(metaclass=ABCMeta):
+        @abstractmethod
+        def bar(self):
+            pass
+
+        @abstractmethod
+        def foo(self):
+            pass
+
+    class B:
+        pass
+
+    class C(A, metaclass=DelegatingMeta):
+        def __init__(self, b):
+            self._delegate = b
+
+        def foo(self):
+            return "C foo"
+
+    with pytest.raises(TypeError):
+        C(B())
+
+
+def test_partial_delegation():
+    class A(metaclass=ABCMeta):
+        @abstractmethod
+        def bar(self):
+            pass
+
+        @abstractmethod
+        def foo(self):
+            pass
+
+    class B:
+        def bar(self):
+            return "B bar"
+
+    class C(A, metaclass=DelegatingMeta):
+        def __init__(self, b):
+            self._delegate = b
 
         def foo(self):
             return "C foo"
