@@ -8,17 +8,17 @@ def readme():
 
 setup(
     name="abc_delegation",
-    version="0.2",
+    version="0.2.1",
     description="Tool for automated implementation of delegation pattern with ABC",
     long_description=readme(),
     classifiers=[
         "Topic :: Utilities",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
     keywords="decorator delegation ABC",
     url="http://github.com/monomonedula/abc-delegation",
