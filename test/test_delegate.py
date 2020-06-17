@@ -130,6 +130,42 @@ def test_raises():
         C(B())
 
 
+def test_raises_multi():
+    class A(metaclass=ABCMeta):
+        @abstractmethod
+        def bar(self):
+            pass
+
+        @abstractmethod
+        def foo(self):
+            pass
+
+        @abstractmethod
+        def baz(self):
+            pass
+
+    class B:
+        def foo(self):
+            return "B foo"
+
+    class X:
+        def baz(self):
+            return "X baz"
+
+    class C(A, metaclass=multi_delegation_metaclass("_delegate1", "_delegate2")):
+        def __init__(self, d1, d2):
+            self._delegate1 = d1
+            self._delegate2 = d2
+
+        def foo(self):
+            return "C foo"
+
+    c = C(B(), X())
+    assert c.bar() == "B bar"
+    assert c.foo() == "C foo"
+    assert c.baz() == "X baz"
+
+
 def test_partial_delegation():
     class A(metaclass=ABCMeta):
         @abstractmethod
