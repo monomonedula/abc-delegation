@@ -1,5 +1,9 @@
 # abc-delegation
 
+[![Codeship Status for monomonedula/abc-delegation](https://app.codeship.com/projects/5be7b410-92cb-0138-678c-1680fac8559a/status?branch=master)](https://app.codeship.com/projects/400234)
+[![codecov](https://codecov.io/gh/monomonedula/abc-delegation/branch/master/graph/badge.svg)](https://codecov.io/gh/monomonedula/abc-delegation)
+[![PyPI version](https://badge.fury.io/py/abc-delegation.svg)](https://badge.fury.io/py/abc-delegation)
+
 A tool for automated delegation with abstract base classes.
 
 This metaclass enables creation of delegating classes 
@@ -9,11 +13,11 @@ This technique is impossible with regular `__getattr__` approach for delegation,
 so normally, you would have to define every delegated method explicitly.
 Not any more
 
-Installation:
+### Installation:
 `pip install abc-delegation`
 
 
-Basic usage:
+### Basic usage:
 ```python    
 from abc import ABCMeta
 
@@ -47,7 +51,7 @@ assert c.foo() == "C foo"
 assert c.bar() == "B bar"
 ```
 
-Multiple delegates:
+### Multiple delegates:
 ```python
 from abc import ABCMeta
 
