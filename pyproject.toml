@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "abc-delegation"
-version = "0.2.1"
+version = "0.2.2"
 description = "A tool for automated delegation with abstract base classes"
 authors = ["Vladyslav Halchenko <valh@tuta.io>"]
 license = "MIT"
