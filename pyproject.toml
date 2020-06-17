@@ -2,8 +2,13 @@
 name = "abc-delegation"
 version = "0.2.1"
 description = "A tool for automated delegation with abstract base classes"
-authors = ["monomonedula <valh@tuta.io>"]
+authors = ["Vladyslav Halchenko <valh@tuta.io>"]
 license = "MIT"
+readme = 'README.md'
+repository = "https://github.com/monomonedula/abc-delegation"
+homepage = "https://github.com/monomonedula/abc-delegation"
+keywords = ["decorator", "delegation", "ABC", "abstract-base-class", "metaclasses", "utility"]
+
 
 [tool.poetry.dependencies]
 python = "^3.6"
