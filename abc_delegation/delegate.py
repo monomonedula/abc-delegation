@@ -1,7 +1,7 @@
 from abc import ABCMeta
 
 
-def delegation_metaclass(delegate_attr="_delegate"):
+def delegation_metaclass(delegate_attr="_delegate", validate=True):
     class _DelegatingMeta(ABCMeta):
         def __new__(mcs, name, bases, dct):
             abstract_method_names = frozenset.union(
@@ -10,9 +10,10 @@ def delegation_metaclass(delegate_attr="_delegate"):
             for name in abstract_method_names:
                 if name not in dct:
                     dct[name] = _delegate_method(delegate_attr, name)
-            dct["__init__"] = _wrap_init(
-                dct["__init__"], delegate_attr, abstract_method_names
-            )
+            if validate:
+                dct["__init__"] = _wrap_init(
+                    dct["__init__"], delegate_attr, abstract_method_names
+                )
 
             return super(_DelegatingMeta, mcs).__new__(mcs, name, bases, dct)
 
@@ -20,6 +21,7 @@ def delegation_metaclass(delegate_attr="_delegate"):
 
 
 DelegatingMeta = delegation_metaclass("_delegate")
+UnsafeDelegatingMeta = delegation_metaclass("_delegate", validate=False)
 
 
 def _wrap_init(init, delegate_attr, abstract_method_names):

@@ -1,7 +1,7 @@
 from abc import ABCMeta
 
 
-def multi_delegation_metaclass(*delegates):
+def multi_delegation_metaclass(*delegates, validate=True):
     class _DelegatingMeta(ABCMeta):
         def __new__(mcs, name, bases, dct):
             abstract_method_names = frozenset.union(
@@ -10,9 +10,10 @@ def multi_delegation_metaclass(*delegates):
             for amethod in abstract_method_names:
                 if amethod not in dct:
                     dct[amethod] = _make_delegated_method_multi(delegates, amethod)
-            dct["__init__"] = _wrap_init_multi(
-                dct["__init__"], delegates, abstract_method_names
-            )
+            if validate:
+                dct["__init__"] = _wrap_init_multi(
+                    dct["__init__"], delegates, abstract_method_names
+                )
 
             return super(_DelegatingMeta, mcs).__new__(mcs, name, bases, dct)
 
