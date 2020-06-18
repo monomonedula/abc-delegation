@@ -85,10 +85,12 @@ def _wrap_init_multi(init, delegate_attributes, abstract_method_names):
                 try:
                     getattr(delegate, name)
                 except AttributeError:
-                    if i == len(delegates) and name in type(self).__abstractmethods__:
+                    if i == len(delegates):
                         raise TypeError(
                             "Can't instantiate %s: missing attribute %s in the delegate attributes %s"
                             % (type(self).__name__, name, delegate_attributes)
                         )
+                else:
+                    break
 
     return wrapped_init

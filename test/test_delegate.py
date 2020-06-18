@@ -160,10 +160,8 @@ def test_raises_multi():
         def foo(self):
             return "C foo"
 
-    c = C(B(), X())
-    assert c.bar() == "B bar"
-    assert c.foo() == "C foo"
-    assert c.baz() == "X baz"
+    with pytest.raises(TypeError):
+        C(B(), X())
 
 
 def test_partial_delegation():
