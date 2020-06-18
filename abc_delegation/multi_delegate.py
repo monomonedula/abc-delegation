@@ -2,6 +2,12 @@ from abc import ABCMeta
 
 
 def multi_delegation_metaclass(*delegates, validate=True):
+    """
+    A factory function for delegation metaclasses.
+    :param delegate_attr: The name of the attribute to be used as the delegate object.
+    :param validate: Whether to check if delegates have required attributes on the object creation. Default True.
+    :return: metaclass
+    """
     class _DelegatingMeta(ABCMeta):
         def __new__(mcs, name, bases, dct):
             abstract_method_names = frozenset.union(

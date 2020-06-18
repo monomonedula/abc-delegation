@@ -13,6 +13,9 @@ This technique is impossible with regular `__getattr__` approach for delegation,
 so normally, you would have to define every delegated method explicitly.
 Not any more
 
+The metaclasses also enable optional validation of the delegate attributes
+to ensure they have all required by the parent object methods.
+
 ### Installation:
 `pip install abc-delegation`
 
@@ -50,6 +53,35 @@ c = C(B())
 assert c.foo() == "C foo"
 assert c.bar() == "B bar"
 ```
+
+### Validation
+```python
+class A(metaclass=ABCMeta):
+    @abstractmethod
+    def bar(self):
+        pass
+
+    @abstractmethod
+    def foo(self):
+        pass
+
+class B:
+    pass
+
+# validation is on by default
+class C(A, metaclass=delegation_metaclass("_delegate")):
+    def __init__(self, b):
+        self._delegate = b
+
+    def foo(self):
+        return "C foo"
+
+C(B())
+# Trying to instantiate C class with B delegate which is missing 'bar' method
+# Validation raises an error:
+# TypeError: Can't instantiate bar: missing attribute bar in the delegate attribute _delegate
+```
+
 
 ### Multiple delegates:
 ```python
@@ -95,3 +127,5 @@ assert c.bar() == "B bar"
 assert c.foo() == "C foo"
 assert c.baz() == "X baz"
 ```
+
+Please refer to the unit tests for more examples.
