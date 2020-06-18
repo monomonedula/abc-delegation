@@ -14,7 +14,7 @@ so normally, you would have to define every delegated method explicitly.
 Not any more
 
 The metaclasses also enable optional validation of the delegate attributes
-to ensure they have all required by the parent object methods.
+to ensure they have all of the methods required by the parent object.
 
 ### Installation:
 `pip install abc-delegation`
