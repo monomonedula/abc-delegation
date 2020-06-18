@@ -5,8 +5,8 @@ import pytest
 from abc_delegation.delegate import (
     DelegatingMeta,
     delegation_metaclass,
-    multi_delegation_metaclass,
 )
+from abc_delegation import multi_delegation_metaclass
 
 
 def test_basic_delegation():
