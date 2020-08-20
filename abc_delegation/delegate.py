@@ -13,9 +13,9 @@ def delegation_metaclass(delegate_attr="_delegate", validate=True):
             abstract_method_names = frozenset.union(
                 *(base.__abstractmethods__ for base in bases)
             ).difference(dct.keys())
-            for name in abstract_method_names:
-                if name not in dct:
-                    dct[name] = _delegate_method(delegate_attr, name)
+            for method_name in abstract_method_names:
+                if method_name not in dct:
+                    dct[method_name] = _delegate_method(delegate_attr, method_name)
             if validate:
                 dct["__init__"] = _wrap_init(
                     dct["__init__"], delegate_attr, abstract_method_names

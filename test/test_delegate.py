@@ -248,3 +248,20 @@ def test_validation_turn_off_multi():
             return "C foo"
 
     C(B(), X())
+
+
+def test_exception_message():
+    class A(metaclass=ABCMeta):
+        @abstractmethod
+        def foo(self):
+            pass
+
+    class B(A):
+        def foo(self):
+            return "B foo"
+
+    b = B()
+    with pytest.raises(AttributeError) as e:
+        b.non_existent_method()
+
+    assert e.value.args[0] == "'B' object has no attribute 'non_existent_method'"
